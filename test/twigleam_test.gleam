@@ -49,3 +49,16 @@ pub fn lex_comment_test() {
     lexer.EOF,
   ])
 }
+
+pub fn lex_filter_test() {
+  "{{ hello|capitalise }}"
+  |> twigleam.tokenise
+  |> should.equal([
+    lexer.VarStart,
+    lexer.Name("hello"),
+    lexer.Punctuation(lexer.Pipe),
+    lexer.Name("capitalise"),
+    lexer.VarEnd,
+    lexer.EOF,
+  ])
+}

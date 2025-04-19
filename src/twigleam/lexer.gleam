@@ -30,6 +30,12 @@ pub type Operator {
   DoubleQuestion
 }
 
+pub type Punctuation {
+  Pipe
+  Period
+  Comma
+}
+
 pub type Token {
   BlockStart
   BlockEnd
@@ -44,7 +50,7 @@ pub type Token {
   Operator(op: Operator)
   Arrow
   Spread
-  Punctuation(sign: String)
+  Punctuation(sign: Punctuation)
   InterpolationStart
   InterpolationEnd
   EOF
