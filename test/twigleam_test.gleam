@@ -14,6 +14,12 @@ pub fn lex_trivial_text_test() {
 }
 
 pub fn lex_tag_test() {
+  "{{name}}"
+  |> twigleam.tokenise
+  |> should.equal([lexer.VarStart, lexer.Name("name"), lexer.VarEnd, lexer.EOF])
+}
+
+pub fn lex_tag_and_text_test() {
   "Hello {{ name }}"
   |> twigleam.tokenise
   |> should.equal([
@@ -44,7 +50,8 @@ pub fn lex_comment_test() {
   |> twigleam.tokenise
   |> should.equal([
     lexer.CommentStart,
-    lexer.Text("This isn't something you need to worry about."),
+    // We are keeping whitespace here because trimming gives us nothing, really.
+    lexer.Text(" This isn't something you need to worry about. "),
     lexer.CommentEnd,
     lexer.EOF,
   ])
